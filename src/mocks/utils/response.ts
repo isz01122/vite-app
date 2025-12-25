@@ -1,29 +1,20 @@
 import { HttpResponse } from 'msw';
+import type { IResponse } from '@models';
 
-export interface ApiResponse<T> {
-    code: string;
-    status: number;
-    message: string;
-    data: T;
-}
-
-export const success = <T>(data: T, message = '성공', status = 200) => {
-    return HttpResponse.json<ApiResponse<T>>({
+export const success = <T>(data: T) => {
+    return HttpResponse.json<IResponse<T>>({
         code: 'common.success.00001',
-        status,
-        message,
+        status: 200,
+        message: '성공',
         data,
     });
 };
 
-export const error = (code: string, message: string, status = 500) => {
-    return HttpResponse.json<ApiResponse<null>>(
-        {
-            code,
-            status,
-            message,
-            data: null,
-        },
-        { status },
-    );
+export const error = () => {
+    return HttpResponse.json<IResponse<null>>({
+        code: 'common.error.00001',
+        status: 500,
+        message: '에러',
+        data: null,
+    });
 };
