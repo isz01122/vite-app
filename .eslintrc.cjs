@@ -14,6 +14,11 @@ module.exports = {
         react: {
             version: 'detect',
         },
+        'import/resolver': {
+            typescript: {
+                project: './tsconfig.app.json',
+            },
+        },
     },
     extends: [
         'airbnb',
