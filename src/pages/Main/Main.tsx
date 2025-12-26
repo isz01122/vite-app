@@ -6,13 +6,12 @@ const Main = () => {
 
     useEffect(() => {
         (async () => {
-            const res = await httpService.get('/api/users');
-
-            if (res.status !== 200) {
-                return;
+            try {
+                const res = await httpService.get('/orders/records');
+                console.log(res);
+            } catch (e) {
+                console.log(e);
             }
-
-            console.log(res.data);
         })();
     }, []);
 

@@ -4,8 +4,10 @@ import App from './App';
 import { ServiceProvider } from '@services';
 
 async function enableMocking() {
+    const useMockData = false;
+
     // 개발 환경에서만 MSW 실행
-    if (!import.meta.env.DEV) {
+    if (!useMockData || !import.meta.env.DEV) {
         return;
     }
 
